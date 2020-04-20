@@ -9,14 +9,13 @@ class Stack:
         self.storage = DoublyLinkedList()
 
     def push(self, value):  # Adding an item onto the stack, goes in front...will be the first thing to come off the stack.
-        self.size += 1
         self.storage.add_to_tail(value)
 
     def pop(self):    # Removing an item off of the stack.
-        if self.size is 0:
+        if self.storage.__len__() is 0:
             return
         else:
             self.size -= 1
             return self.storage.remove_from_tail() 
     def len(self):   # Getting length of items on the stack.
-        return self.size
+        return self.storage.__len__()
