@@ -22,11 +22,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        if key not in self.cache:
+        if key not in self.cache:  # If they key is not in the hashtable, return None
             return None
-        else:
-            node = self.cache[key]
-            self.storage.move_to_end(node)
+        else: # Otherwise..
+            node = self.cache[key]   # Assign the value of item at the cache @ position [key] to node variable.
+            self.storage.move_to_front(node) # Assign that node to the most recently used item (Front)
+            return node.value[1] # Return the value of the node, which is a tuple containing a key and value, value is located at position '1' of the tuple
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -40,14 +41,16 @@ class LRUCache:
     """
     def set(self, key, value):
         if key in self.cache:  # If key exists in the cache
-            node = self.cache[key]  # grab it and assign it to a node
-            node.key = key   # Extract the key and value passed into function call and assign to node
-            node.value = value
-            self.storage.move_to_end(node)  # assign the node to the front
+            node = self.cache[key]  # grab it's value and assign it to a node
+            node.value = (key, value) # Assign key and value passed into set method to the nodes value as a tuple
+            self.storage.move_to_front(node) # Move the node to the front of the DLL
+            return node # Return it out which will terminate the function at this point.
         if self.size == self.limit:  # If we've hit the limit in the Cache...
-            self.storage.remove_from_tail()  # Remove the LRU item in the list 
-        if key in self.cache is True:  # if the key already exists in the cache...
-            self.value = node.value   # Reassign the value with the new value 
+            self.cache.pop(self.storage.remove_from_tail()[0]) # Removes the node from the hashtable(dict) as well as the DLL
+            self.size -= 1 # Decrement size of DLL manually.
+        self.storage.add_to_head((key, value)) # If key is not currently in cache, add to the head of the DLL
+        self.cache[key] = self.storage.head # Assign the node at position 'head' to the hashtable 
+        self.size += 1 # Increment the size of the DLL by 1
   
         
 
