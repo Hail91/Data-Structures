@@ -109,18 +109,21 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
         # Need to initalize a stack (LIFO)
-        # data = Stack()
+        data = Stack()
         # Add given node to the stack
-        # data.push(node)
-        # while (data.len() > 0):
+        data.push(node)
+        while (data.len() > 0):
         # pop item off stack and assign to a variable to track location in BST
-            # item = data.pop()
+            item = data.pop()
+            print(item.value)
         # Check if left/right nodes exists, if so..
-        # Add them to stack
-        # Print value
-
+            if item.left:
+                # Add them to stack
+                data.push(item.left)
+            if item.right:
+                # Add them to stack
+                data.push(item.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
