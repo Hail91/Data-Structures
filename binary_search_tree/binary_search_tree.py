@@ -59,9 +59,6 @@ class BinarySearchTree:
     def for_each(self, cb):
         node = self
         cb(node.value)
-        # Base case for the recursion to stop
-        if node.value == None:
-            return
         # Need to iterate over all the nodes in the tree
         if node.left:
             # Execute the callback function on each node we hit 
@@ -75,17 +72,55 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # Check if root has a left node, if so..recursively cascade down that tree printing the value for each node
+        if node.left:
+            # Recurse left side of BT until their are no more left nodes.
+            node.left.in_order_print(node.left)
+        # Print the root value after hitting and printing every value < than the root node's value
+        print(node.value)
+        # Check if root has a right node, if so...recursively cascade down that tree printing the value at each node
+        if node.right:
+            # Recurse the right side of BT until there are no more right nodes.
+            node.right.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # Initialize a Queue
+        data = Queue()
+        # Append the root node to the Queue
+        data.enqueue(node)
+        # Print value of left and right node for every node working our way down.
+        while (data.len() > 0):
+            # Dequeue the current root and assign to item so we can track where we are in the tree
+            item = data.dequeue()
+            # Print the item we just removed.
+            print(item.value)
+            # If there is a node to the left of the current node we're on...
+            if item.left:
+                # Add it to the Queue
+                data.enqueue(item.left)
+            # If there is a node to the right of the current node we're on...
+            if item.right:
+                # Add it to the Queue
+                data.enqueue(item.right)
+            # Keep running while loop until there is nothing left in Queue
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
         pass
+        # Need to initalize a stack (LIFO)
+        # data = Stack()
+        # Add given node to the stack
+        # data.push(node)
+        # while (data.len() > 0):
+        # pop item off stack and assign to a variable to track location in BST
+            # item = data.pop()
+        # Check if left/right nodes exists, if so..
+        # Add them to stack
+        # Print value
+
 
     # STRETCH Goals -------------------------
     # Note: Research may be required

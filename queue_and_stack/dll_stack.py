@@ -8,7 +8,7 @@ class Stack:
         # Why is our DLL a good choice to store our elements?
         self.storage = DoublyLinkedList()
 
-    def push(self, value):  # Adding an item onto the stack, goes in front...will be the first thing to come off the stack.
+    def push(self, value):  # Adding an item onto the stack, goes in front...will be the last thing to come off the stack.
         self.storage.add_to_tail(value)
 
     def pop(self):    # Removing an item off of the stack.
