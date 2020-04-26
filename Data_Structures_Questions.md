@@ -2,19 +2,19 @@ Answer the following questions for each of the data structures you implemented a
 
 ## Queue
 
-1. What is the runtime complexity of `enqueue`?
+1. What is the runtime complexity of `enqueue`? - The runtime complexity is O(1)
+    
+2. What is the runtime complexity of `dequeue`? The runtime complexity is O(1)
 
-2. What is the runtime complexity of `dequeue`?
-
-3. What is the runtime complexity of `len`?
+3. What is the runtime complexity of `len`? The runtime complexity is O(n)
 
 ## Binary Search Tree
 
-1. What is the runtime complexity of `insert`? 
+1. What is the runtime complexity of `insert`?  The runtime complexity is O(n) since the time it takes to complete scales linearly with number of nodes in the tree.
 
-2. What is the runtime complexity of `contains`?
+2. What is the runtime complexity of `contains`? The runtime complexity is O(logn) because we can cut multiple elements out of our search as we cascade down the tree.
 
-3. What is the runtime complexity of `get_max`? 
+3. What is the runtime complexity of `get_max`? The runtime complexity is O(n) because we have have to 'hit' every node in the tree to properly find out what the max is.
 
 ## Heap
 

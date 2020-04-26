@@ -49,25 +49,68 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value)
+        self.length += 1
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
 
     def remove_from_head(self):
-        pass
+        value = self.head.value
+        self.delete(self.head)
+        return value
 
     def add_to_tail(self, value):
-        pass
+        new_node = ListNode(value)
+        self.length += 1
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
 
     def remove_from_tail(self):
-        pass
+        value = self.tail.value
+        self.delete(self.tail)
+        return value
 
     def move_to_front(self, node):
-        pass
+        if node is self.head:
+            Returns
+        self.add_to_head(node.value)
+        self.delete(node)
 
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return
+        self.add_to_tail(node.value)
+        self.delete(node)
 
     def delete(self, node):
-        pass
+        self.length -= 1
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        elif node is self.head:
+            self.head = node.next
+            node.delete()
+        elif node is self.tail:
+            self.tail = node.prev
+            node.delete()
+        else:
+            node.delete()
 
     def get_max(self):
-        pass
+        current = self.head
+        max = self.head.value
+        while(current is not None):
+            if current.value > max:
+                max = current.value
+            current = current.next
+        return max
